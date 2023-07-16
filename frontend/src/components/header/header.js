@@ -1,11 +1,11 @@
 import React from "react";
-import { Navbar, Container, Nav, NavDropdown, Form, Button} from "react-bootstrap";
+import { Navbar, Container, Nav, NavDropdown, Form } from "react-bootstrap";
 
 
 export default function Header() {
   return (
     <Navbar bg = "primary" variant="dark" expand="lg">
-      <Container fluid>
+      <Container>
         <Navbar.Brand href="/">Note Zipper</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -23,7 +23,7 @@ export default function Header() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">My Notes</Nav.Link>
+            <Nav.Link href="/mynotes">My Notes</Nav.Link>
             <NavDropdown title="Arslan" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">My Profile</NavDropdown.Item>
               <NavDropdown.Item href="#action4">

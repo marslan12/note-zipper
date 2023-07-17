@@ -1,9 +1,22 @@
 import { Link } from "react-router-dom";
 import MainScreen from "../../components/main-screen";
 import { Accordion, Badge, Button, Card } from "react-bootstrap";
-import notes from "../../data/notes";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const MyNotes = () => {
+
+    const [notes, setNotes] = useState([]);
+    const getNotes = async () => {
+        const { data } = await axios("/api/notes/");
+        setNotes(data);
+    }
+
+
+    useEffect(() => {
+        getNotes();
+    }, [])
+
     return (
         <MainScreen title="Welcome Back Arslan..">
             <Link to="create-note">
@@ -17,7 +30,7 @@ const MyNotes = () => {
                     <Accordion.Item eventKey="0">
                     <Card style={{margin: 10}}>
                         <Card.Header style={{display: "flex"}}>
-                            <span 
+                            <span
                                 style={{
                                     color: "black",
                                     textDecoration: "none",

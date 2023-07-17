@@ -1,9 +1,18 @@
 const express = require("express");
 const notes = require("./data/notes");
 const dotenv = require("dotenv");
+const connectDB = require("../backend/config/db");
+const userRoutes = require("./routes/userRoutes");
+const { default: App } = require("../frontend/src/App");
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
 const app = express();
+
 dotenv.config();
+connectDB();
+app.use(express.json());
+app.use(notFound);
+app.use(errorHandler);
 
 app.get("/", (req, res) => {
   res.send("API is running");
@@ -13,11 +22,7 @@ app.get("/api/notes", (req, res) => {
   res.send(notes);
 });
 
-app.get("/api/notes/:id", (req, res) => {
-  const id = req.params.id;
-  const note = notes.find((x) => x._id === id);
-  res.send(note);
-});
+app.use('/api/users', userRoutes);
 
 const PORT = process.env.PORT;
 

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import MainScreen from "../components/main-screen";
 import { Alert, Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -20,6 +22,7 @@ export const LoginPage = () => {
 
       localStorage.setItem("userInfo", JSON.stringify(data));
       setError(false);
+      navigate("/mynotes");
     } catch (error) {
       setError(error.response.data.message);
     }

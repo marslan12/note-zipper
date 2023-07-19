@@ -1,6 +1,5 @@
 import { Button, Container, Row } from "react-bootstrap";
 import "./landing-page.css";
-import { useEffect } from "react";
 
 const LandingPage = () => {
   return (
